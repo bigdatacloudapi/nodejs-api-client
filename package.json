@@ -1,0 +1,24 @@
+{
+  "name": "@bigdatacloudapi/client",
+  "version": "1.0.0",
+  "description": "A NodeJS client for BigDataCloud API connectivity (https://www.bigdatacloud.net)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigdatacloudapi/nodejs-api-client.git"
+  },
+  "keywords": [
+    "ip-geolocation",
+    "bigdatacloud",
+    "bigdatacloudapi"
+  ],
+  "author": "BigDataCloud",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bigdatacloudapi/nodejs-api-client/issues"
+  },
+  "homepage": "https://github.com/bigdatacloudapi/nodejs-api-client#readme",
+  "dependencies": {
+    "request": "^1.0.0"
+  }
+}
