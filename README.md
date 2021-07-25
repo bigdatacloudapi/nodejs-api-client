@@ -23,6 +23,13 @@ For documentation specific to this api client, please read below.
 For more specific documentation to the APIs available, including endpoints, request and response data, please visit our [documentation area](https://www.bigdatacloud.net/ip-geolocation-apis).
 
 
+## Update Notes
+
+- This repository now utilises `node-fetch` rather than the deprecated `request` module.
+- Calls to the API will return a JSON object as a successful response, see below for an example
+- Exceptions return a single object: `{error:json_object || error_string,code:http_status_code}`
+
+
 
 ## Authentication / Identification
 
@@ -43,6 +50,8 @@ See the example below.
 
 ## Example usage
 
+The below example is found in the included demo.js.
+
 ```javascript
 	const client = require('@bigdatacloudapi/client')('XXX'); // XXX being your api key found at: https://www.bigdatacloud.net/customer/account
 
@@ -56,7 +65,7 @@ See the example below.
     //Asynchronous example using 'then':
     client
     .getIpGeolocationFull({ip:'8.8.8.8'})
-    .then(function(jsonResult) {
+    .then((jsonResult=> {
         console.log('Asynchronous "then" result:',jsonResult);
     })
     .catch(function(error) {
@@ -73,7 +82,6 @@ See the example below.
         }
     })();
 
-</script>
 ```
 
 
@@ -205,4 +213,34 @@ See the example below.
         "isUnreachable": false
     }
 }
+```
+
+
+## Error Handling
+
+Utilize standard error handling practices as shown in the above example.
+
+Wrap any synchronous calls in a try/catch handler, and ensure to include the .catch() method on any async calls.
+
+```javascript
+   
+    //Asynchronous error handling
+    client
+    .getIpGeolocationFull({ip:'8.8.8.8'})
+    .then((jsonResult=> {
+        //success
+    })
+    .catch(function(error) {
+        console.error('Asynchronous "then" error:', error);
+    });
+
+    //Synchronous error handling
+    (async function() {
+        try {
+            //success
+        } catch (error) {
+            console.error('Asynchronous "await" error:', error);
+        }
+    })();
+
 ```
