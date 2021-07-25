@@ -1,4 +1,4 @@
-const request = require('request');
+const fetch = require('node-fetch');
 
 class Client {
 	constructor(apiKey, nameSpace, server) {
@@ -8,13 +8,13 @@ class Client {
 		this.server=server ? server : 'api.bigdatacloud.net';
 
 		return new Proxy(this,{
-			get:function(t,p) {
+			get:(t,p) => {
 				if (typeof t[p]!=='undefined') return t[p];
-				return function(params) {
+				return params => {
 					var key=p;
 					var method='GET';
 
-					key=key.replace(/([A-Z])/g,function(m,c,o,i) {
+					key=key.replace(/([A-Z])/g,(m,c,o,i) => {
 						return '-'+c.toLowerCase();
 					});
 					key=key.trim('-');
@@ -42,7 +42,7 @@ class Client {
 		});
 	}
 
-	async communicate(endpoint,method,payload) {
+	communicate(endpoint,method,payload) {
 		var qs=[];
 		var data=false;
 		var hasKey=false;
@@ -71,23 +71,30 @@ class Client {
 	}
 
 	talk(method,url,data) {
-		return new Promise((resolve, reject) => {
-			var payload={url:url,json:true,method:method};
+		return new Promise(async (resolve, reject) => {
+			var payload={method:method};
 			if (method=='POST' || method=='PUT' || method=='PATCH') {
 				payload.headers={'content-type' : 'application/x-www-form-urlencoded'};
 			}
 			if (data) payload.body=data;
-			request(payload, (error, response, body) => {
-				if (error) reject(error,0);
-				if (response.statusCode != 200) {
-					reject(body,code);
+			try {
+				const res=await fetch(url,payload);
+				var json=await res.json();
+				if (!res.ok) {
+					return reject({error:json,code:res.status});
 				}
-				resolve(body);
-			});
+				if (json) {
+					return resolve(json);
+				}
+				return reject({error:res.body,code:res.status});
+
+			} catch (e) {
+				reject({error:e,code:0});
+			}
 		});
 	}
 };
 
-module.exports=function(apiKey,nameSpace,server) {
+module.exports=(apiKey,nameSpace,server) => {
 	return new Client(apiKey,nameSpace,server);
 }
