@@ -19,12 +19,12 @@ If you are not yet a customer, it is completely free to join.
 
 All BigDataCloud APIs are bundled into five different API packages. Each API package has its own subscription plans and pricings. 
 
-You can find more details on the respective API pacakges page.
+You can find more details on the respective API packages page.
 - [IP Geolocation Package](https://www.bigdatacloud.com/packages/ip-geolocation)
 - [Reverse Geocoding Package](https://www.bigdatacloud.com/packages/reverse-geocoding)
 - [Phone & Email Verification Package](https://www.bigdatacloud.com/packages/phone-email-verification)
-- [Network Engineering Pacakge](https://www.bigdatacloud.com/packages/network-engineering), and
-- [Free API package](https://www.bigdatacloud.com/packages/free-api) (doesn't require account creation and API key)
+- [Network Engineering Package](https://www.bigdatacloud.com/packages/network-engineering), and
+- [Free API Package](https://www.bigdatacloud.com/packages/free-api) (doesn't require account creation and API key)
 
 ## Documentation
 
