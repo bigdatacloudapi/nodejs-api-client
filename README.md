@@ -1,7 +1,7 @@
 # BigDataCloud NodeJS API Client
 
 
-A NodeJS client for connecting to the API services provided by [BigDataCloud](https://www.bigdatacloud.com)
+A NodeJS client for connecting to the API services provided by [BigDataCloud](https://www.bigdatacloud.com).
 
 
 ## What API services does [BigDataCloud](https://www.bigdatacloud.com) offer?
@@ -15,7 +15,16 @@ You can access any and all BigDataCloud APIs with a free API Key.
 To get your API Key, just access your account and retrieve it from your [Account Dashboard](https://www.bigdatacloud.com/account).
 If you are not yet a customer, it is completely free to join.
 
+### BigDataCloud API Packages
 
+All BigDataCloud APIs are bundled into five different API packages. Each API package has its own subscription plans and pricings. 
+
+You can find more details on the respective API pacakges page.
+- [IP Geolocation Package](https://www.bigdatacloud.com/packages/ip-geolocation)
+- [Reverse Geocoding Package](https://www.bigdatacloud.com/packages/reverse-geocoding)
+- [Phone & Email Verification Package](https://www.bigdatacloud.com/packages/phone-email-verification)
+- [Network Engineering Pacakge](https://www.bigdatacloud.com/packages/network-engineering), and
+- [Free API package](https://www.bigdatacloud.com/packages/free-api) (doesn't require account creation and API key)
 
 ## Documentation
 
@@ -50,7 +59,7 @@ See the example below.
 
 ## Example usage
 
-The below example is found in the included demo.js. It demonstrates the use of our IP geolocation API from [IP Geolocation API Package](https://www.bigdatacloud.com/packages/ip-geolocation).
+The below example is found in the included demo.js.
 
 ```javascript
     const client = require('@bigdatacloudapi/client')('XXX'); // XXX being your api key found at: https://www.bigdatacloud.com/account
