@@ -1,4 +1,4 @@
-const client = require('./index')('XXX'); // XXX being your api key found at: https://www.bigdatacloud.net/customer/account
+const client = require('./index')('XXX'); // XXX being your api key found at: https://www.bigdatacloud.com/account
 
 /*
  * All api endpoints can be accessed via magic methods in the following camelised format:
