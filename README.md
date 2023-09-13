@@ -9,8 +9,6 @@ A NodeJS client for connecting to the API services provided by [BigDataCloud](ht
 BigDataCloud offers a range of extremely useful and fast APIs that can be utilised in both backend and frontend scenarios.
 From validating customer input live to the next generation of IP Geolocation technology, BigDataCloud has an API suitable to your needs.
 
-For a full list of APIs, visit our [documentation area](https://www.bigdatacloud.com/docs).
-
 You can access any and all BigDataCloud APIs with a free API Key.
 To get your API Key, just access your account and retrieve it from your [Account Dashboard](https://www.bigdatacloud.com/account).
 If you are not yet a customer, it is completely free to join.
@@ -20,16 +18,16 @@ If you are not yet a customer, it is completely free to join.
 All BigDataCloud APIs are bundled into five different API packages. Each API package has its own subscription plans and pricings. 
 
 You can find more details on the respective API packages page.
-- [IP Geolocation Package](https://www.bigdatacloud.com/packages/ip-geolocation)
-- [Reverse Geocoding Package](https://www.bigdatacloud.com/packages/reverse-geocoding)
-- [Phone & Email Verification Package](https://www.bigdatacloud.com/packages/phone-email-verification)
-- [Network Engineering Package](https://www.bigdatacloud.com/packages/network-engineering), and
-- [Free API Package](https://www.bigdatacloud.com/packages/free-api) (doesn't require account creation and API key)
+- [IP Geolocation Package](https://www.bigdatacloud.com/ip-geolocation)
+- [Reverse Geocoding Package](https://www.bigdatacloud.com/reverse-geocoding)
+- [Phone & Email Verification Package](https://www.bigdatacloud.com/phone-email-verification)
+- [Network Engineering Package](https://www.bigdatacloud.com/network-engineering), and
+- [Free API Package](https://www.bigdatacloud.com/free-api) (doesn't require account creation and API key)
 
 ## Documentation
 
 For documentation specific to this api client, please read below.
-For more specific documentation to the APIs available, including endpoints, request and response data, please visit our [documentation area](https://www.bigdatacloud.com/docs/ip-geolocation).
+For more specific documentation to the APIs available, including endpoints, request and response data, please visit the respective API package page.
 
 
 ## Update Notes
