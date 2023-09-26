@@ -11,6 +11,7 @@ From validating customer input live to the next generation of IP Geolocation tec
 
 You can access any and all BigDataCloud APIs with a free API Key.
 To get your API Key, just access your account and retrieve it from your [Account Dashboard](https://www.bigdatacloud.com/account).
+
 If you are not yet a customer, it is completely free to join.
 
 ### BigDataCloud API Packages
