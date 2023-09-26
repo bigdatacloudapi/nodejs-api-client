@@ -20,5 +20,8 @@
   "homepage": "https://github.com/bigdatacloudapi/nodejs-api-client#readme",
   "dependencies": {
     "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
