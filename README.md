@@ -73,7 +73,7 @@ The below example is found in the included demo.js.
     //Asynchronous example using 'then':
     client
     .getIpGeolocationFull({ip:'8.8.8.8'})
-    .then((jsonResult=> {
+    .then(jsonResult=> {
         console.log('Asynchronous "then" result:',jsonResult);
     })
     .catch(function(error) {
