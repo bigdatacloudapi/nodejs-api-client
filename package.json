@@ -1,30 +1,33 @@
 {
   "name": "@bigdatacloudapi/client",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "A NodeJS client for BigDataCloud API connectivity (https://www.bigdatacloud.com)",
   "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "node demo.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bigdatacloudapi/nodejs-api-client.git"
+    "url": "https://github.com/bigdatacloudapi/nodejs-api-client"
   },
   "keywords": [
     "ip-geolocation",
     "bigdatacloud",
-    "bigdatacloudapi"
+    "bigdatacloudapi",
+    "reverse-geocoding",
+    "geoip",
+    "geolocation",
+    "asn",
+    "ip-address",
+    "timezone",
+    "phone-validation",
+    "email-verification"
   ],
-  "author": "BigDataCloud",
+  "author": "BigDataCloud Pty Ltd",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bigdatacloudapi/nodejs-api-client/issues"
-  },
-  "homepage": "https://github.com/bigdatacloudapi/nodejs-api-client#readme",
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  },
+  "homepage": "https://www.bigdatacloud.com",
   "engines": {
-    "node": ">=14.0.0"
-  },
-  "scripts": {
-    "test": "echo \"No test specified\""
+    "node": ">=18.0.0"
   }
 }

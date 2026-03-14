@@ -1,27 +1,15 @@
-const client = require('./index')('XXX'); // XXX being your api key found at: https://www.bigdatacloud.com/account
+const client = require('./index')('YOUR_API_KEY');
 
-/*
- * All api endpoints can be accessed via magic methods in the following camelised format:
- * method | endpoint
- * For example: an asynchronous "GET" call to the "ip-geolocation-full" endpoint would be: client.getIpGeolocationFull();
- * All endpoints return a promise
- */
-
-//Asynchronous example using 'then':
-client
-.getIpGeolocationFull({ip:'8.8.8.8'})
-.then(jsonResult => {
-    console.log('Asynchronous "then" result:',jsonResult);
-}).catch(exception => {
-	console.log(exception);
-});
-
-//Asynchronous example using 'await':
-(async () => {
+// Async example
+(async function() {
     try {
-        var jsonResult = await client.getIpGeolocationFull({ip:'8.8.8.8'});
-        console.log('Asynchronous "await" result:',jsonResult);
+        // Reverse geocode (works with free client-side endpoint too)
+        const result = await client.getReverseGeocodeClient({
+            latitude: -34.9285,
+            longitude: 138.6007
+        });
+        console.log('Reverse geocode result:', result);
     } catch (error) {
-        console.error('Asynchronous "await" error:', error);
+        console.error('Error:', error);
     }
 })();

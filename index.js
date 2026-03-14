@@ -1,100 +1,80 @@
-const fetch = require('node-fetch');
-
 class Client {
 	constructor(apiKey, nameSpace, server) {
-		var _this=this;
-		this.apiKey=apiKey;
-		this.nameSpace=nameSpace ? nameSpace : 'data';
-		this.server=server ? server : 'api.bigdatacloud.net';
+		this.apiKey = apiKey;
+		this.nameSpace = nameSpace || 'data';
+		this.server = server || 'api-bdc.net';
 
-		return new Proxy(this,{
-			get:(t,p) => {
-				if (typeof t[p]!=='undefined') return t[p];
-				return params => {
-					var key=p;
-					var method='GET';
+		return new Proxy(this, {
+			get: (target, prop) => {
+				if (typeof target[prop] !== 'undefined') return target[prop];
+				return (params) => {
+					let key = prop;
+					let method = 'GET';
 
-					key=key.replace(/([A-Z])/g,(m,c,o,i) => {
-						return '-'+c.toLowerCase();
-					});
-					key=key.trim('-');
-					key=key.split('-');
+					key = key.replace(/([A-Z])/g, (m) => '-' + m.toLowerCase());
+					key = key.replace(/^-/, '');
+					const parts = key.split('-');
 
-					if (key.length>1) {
-						var methodTest=key[0].toUpperCase();
-						switch (methodTest) {
-							case 'GET':
-							case 'POST':
-							case 'PUT':
-							case 'DELETE':
-							case 'OPTIONS':
-							case 'PATCH':
-							case 'HEAD':
-							method=methodTest;
-							key.shift();
-							break;
+					if (parts.length > 1) {
+						const methodTest = parts[0].toUpperCase();
+						if (['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'].includes(methodTest)) {
+							method = methodTest;
+							parts.shift();
 						}
 					}
-					var endpoint=key.join('-');
-					return _this.communicate(endpoint,method,params);
-				}
+
+					const endpoint = parts.join('-');
+					return this.communicate(endpoint, method, params);
+				};
 			}
 		});
 	}
 
-	communicate(endpoint,method,payload) {
-		var qs=[];
-		var data=false;
-		var hasKey=false;
-		if (!method) method='GET';
-		method=method.toUpperCase();
+	communicate(endpoint, method, payload) {
+		const qs = [];
+		let data = false;
+		let hasKey = false;
+		method = (method || 'GET').toUpperCase();
 
-		var url='https://'+this.server+'/'+this.nameSpace+'/'+endpoint;
+		let url = 'https://' + this.server + '/' + this.nameSpace + '/' + endpoint;
 
 		if (payload) {
-			for (var i in payload) {
-				if (i=='key') hasKey=true;
-				qs.push(encodeURIComponent(i)+'='+encodeURIComponent(payload[i]));
+			for (const key in payload) {
+				if (key === 'key') hasKey = true;
+				qs.push(encodeURIComponent(key) + '=' + encodeURIComponent(payload[key]));
 			}
 		}
-		if (!hasKey) qs.push('key='+this.apiKey);
+		if (!hasKey) qs.push('key=' + this.apiKey);
 
-		if (qs.length && method=='GET' || method=='HEAD' || method=='DELETE') {
-			if (qs.length) {
-				url+=(url.indexOf('?')==-1 ? '?' : '&')+qs.join('&');
-			}
+		if (qs.length && (method === 'GET' || method === 'HEAD' || method === 'DELETE')) {
+			url += (url.indexOf('?') === -1 ? '?' : '&') + qs.join('&');
 		} else if (qs.length) {
-			data=qs.join('&');
+			data = qs.join('&');
 		}
 
-		return this.talk(method,url,data);
+		return this.talk(method, url, data);
 	}
 
-	talk(method,url,data) {
-		return new Promise(async (resolve, reject) => {
-			var payload={method:method};
-			if (method=='POST' || method=='PUT' || method=='PATCH') {
-				payload.headers={'content-type' : 'application/x-www-form-urlencoded'};
-			}
-			if (data) payload.body=data;
-			try {
-				const res=await fetch(url,payload);
-				var json=await res.json();
-				if (!res.ok) {
-					return reject({error:json,code:res.status});
-				}
-				if (json) {
-					return resolve(json);
-				}
-				return reject({error:res.body,code:res.status});
+	async talk(method, url, data) {
+		const options = { method };
 
-			} catch (e) {
-				reject({error:e,code:0});
-			}
-		});
+		if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
+			options.headers = { 'content-type': 'application/x-www-form-urlencoded' };
+		}
+		if (data) options.body = data;
+
+		const res = await fetch(url, options);
+		const json = await res.json();
+
+		if (!res.ok) {
+			throw { error: json, code: res.status };
+		}
+
+		return json;
 	}
-};
-
-module.exports=(apiKey,nameSpace,server) => {
-	return new Client(apiKey,nameSpace,server);
 }
+
+// Support both CJS and ESM
+module.exports = (apiKey, nameSpace, server) => new Client(apiKey, nameSpace, server);
+module.exports.Client = Client;
+module.exports.default = module.exports;
